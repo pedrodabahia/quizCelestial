@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Celestial</title>
+  <style>
+    body {
+      background: #f0f9ff;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 50px;
+      color: #333;
+    }
+    h1 {
+      color: #4caf50;
+      font-size: 8vw;
+    }
+    .question {
+      margin: 30px 0;
+      font-size: 20px;
+    }
+    .btn {
+      display: block;
+      margin: 10px auto;
+      padding: 7vw 24px;
+      background: #4caf50;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      width: 70vw;
+      font-size: 3vw;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #388e3c;
+    }
+    .hidden {
+      display: none;
+    }
+    .result {
+      margin-top: 40px;
+      font-size: 22px;
+      color: #4caf50;
+    }
+    #button{
+      display: none;
+      text-decoration: none;
+      color: #4caf50;
+      padding:12px 24px;
+      width: 250px;
+      margin: 10px auto;
+      border:2px solid #4caf50;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Quiz Celestial</h1>
+  <p class="question">Pergunta Final!! Qual a melhor forma de deixar seu dia mais leve?</p>
+
+  <a href="#" class="btn" onclick="showResult('Errado! Essa é boa, mas tem melhor!')">Encontrar alguém pra conversar sobre a vida, fé e sonhos.</a>
+  <a href="#" class="btn" onclick="showResult('Não, ficar em casa não vale dessa vez!')">Ficar em casa sem graça.</a>
+  <a href="#" class="btn" onclick="showResult('Ideia Interessante, mais tente novamente!')">Sair na unha com uma ursa.</a>
+  <a href="#" class="btn" onclick="showResult('Parabéns! A resposta certa é essa.')">✨Tomar um Guaraná com Pedrão da Bahia✨</a>
+
+  <p id="result" class="result hidden"></p>
+  <a id="button" onclick="resultado()">Topar essa bênção 🙌</a>
+  
+  <script>
+
+      function resultado(){
+      const captura = new URLSearchParams(window.location.search);
+      const pergunta1 = captura.get('pergunta1');
+      const pergunta2 = captura.get('pergunta2');
+      const pergunta3 = captura.get('pergunta3');
+      
+      let respostas = {
+        a : 0,
+        b : 0,
+        c : 0,
+        d : 0
+      }
+
+      let coletado = [pergunta1, pergunta2, pergunta3];
+
+      const formData = new FormData(coletado.target);
+      formData.forEach((value) => {
+        respostas[value]++;
+      });
+
+      let maxAnswer = Object.keys(respostas).reduce((a, b) => respostas[a] > respostas[b] ? a : b);
+
+            let resultText = "";
+      switch (maxAnswer) {
+        case "a":
+          resultText = "Você é o tipo café! Sempre tranquilo e estiloso!";
+          break;
+        case "b":
+          resultText = "Você é a rainha do salgado! Adora uma comida boa e uma boa risada!";
+          break;
+        case "c":
+          resultText = "Você é o mestre da batata frita! Simples e direto ao ponto!";
+          break;
+        case "d":
+          resultText = "Você é a pessoa sofisticada! Gosta de se sentir chique e adora uma boa foto!";
+          break;
+      }
+
+
+      window.location.href= `https://wa.me/5573999916255?text=${resultText}?`;
+      }
+
+
+function showResult(message) {
+    if(message == 'Parabéns! A resposta certa é essa.'){
+
+
+        const captura = new URLSearchParams(window.location.search);
+      const pergunta1 = captura.get('pergunta1');
+      const pergunta2 = captura.get('pergunta2');
+      const pergunta3 = captura.get('pergunta3');
+      
+      let respostas = {
+        a : 0,
+        b : 0,
+        c : 0,
+        d : 0
+      }
+
+      let coletado = [pergunta1, pergunta2, pergunta3];
+
+      const formData = new FormData(coletado.target);
+      formData.forEach((value) => {
+        respostas[value]++;
+      });
+
+      let maxAnswer = Object.keys(respostas).reduce((a, b) => respostas[a] > respostas[b] ? a : b);
+
+            let resultText = "";
+      switch (maxAnswer) {
+        case "a":
+          resultText = "Você é o tipo café! Sempre tranquila e estilosa, \nQue tal um café em um lugar aconchegante para conversarmos mais e relaxar?";
+          break;
+        case "b":
+          resultText = "Você é a rainha do salgado! Adora uma comida boa e uma boa risada! \nVamos curtir um rolê com pastel e caldo de cana? Prometo que a risada é garantida!";
+          break;
+        case "c":
+          resultText = "Você é o mestre da batata frita! Simples e direto ao ponto! \nQue tal um passeio no parque, com batata frita e muita conversa boa?";
+          break;
+        case "d":
+          resultText = "Você é do tipo que adora uma boa vibe! 🍿\nQue tal um cinema com pipoca, e depois a gente vai bater um papo sobre o filme?";
+          break;
+      }
+      document.getElementById("result").style.color="darkgreen";
+      document.getElementById("result").textContent = message + "\n"+"Parece que "+resultText;
+      document.getElementById("result").classList.remove("hidden");
+      document.getElementById("button").style.display = "block";
+    
+    }else{
+      alert(message);
+      document.getElementById("result").classList.remove("hidden");  
+    }
+    }
+  </script>
+
+</body>
+</html>

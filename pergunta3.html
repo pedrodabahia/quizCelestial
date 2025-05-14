@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Celestial</title>
+  <style>
+    body {
+      background: #f0f9ff;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 50px;
+      color: #333;
+    }
+    h1 {
+      color: #4caf50;
+      font-size: 8vw;
+    }
+    .question {
+      margin: 30px 0;
+      font-size: 20px;
+    }
+    .btn {
+      display: block;
+      margin: 10px auto;
+      padding: 7vw 24px;
+      background: #4caf50;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      width: 70vw;
+      font-size: 3vw;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #388e3c;
+    }
+    .hidden {
+      display: none;
+    }
+    .result {
+      margin-top: 40px;
+      font-size: 22px;
+      color: #4caf50;
+    }
+    #button{
+      display: none;
+      text-decoration: none;
+      color: #4caf50;
+      padding:12px 24px;
+      width: 250px;
+      margin: 10px auto;
+      border:2px solid #4caf50;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Quiz Celestial</h1>
+  <p class="question">3/4 A escolha de um filme é crucial! Qual desses te faria ficar grudado na tela?</p>
+
+  <a href="#" class="btn" onclick="showResult('a')">Um filme clássico, daqueles que você finge que entende, mas no fundo só gosta da trilha sonora</a>
+  <a href="#" class="btn" onclick="showResult('b')">Um filme de ação, porque a adrenalina no sofá é o que há de melhor</a>
+  <a href="#" class="btn" onclick="showResult('c')">Uma comédia, porque se não tiver risada, não vale a pena</a>
+  <a href="#" class="btn" onclick="showResult('d')">Um documentário, porque todo mundo precisa de um pouco de cultura</a>
+
+  <script>
+      const captura = new URLSearchParams(window.location.search);
+      const pergunta1 = captura.get('pergunta1');
+      const pergunta2 = captura.get('pergunta2');
+function showResult(message){
+  //window.location.href = `https://pedrodabahia.github.io/quizCelestial/perguntaFinal?pergunta1=${encodeURIComponent(pergunta1)}&pergunta2=${encodeURIComponent(pergunta2)}&pergunta3=${encodeURIComponent(message)}`;
+  window.location.href = `./convite.html?pergunta1=${encodeURIComponent(pergunta1)}&pergunta2=${encodeURIComponent(pergunta2)}&pergunta3=${encodeURIComponent(message)}`
+}
+  </script>
+
+</body>
+</html>

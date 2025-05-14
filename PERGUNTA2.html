@@ -17,7 +17,7 @@
     }
     .question {
       margin: 30px 0;
-      font-size: 5vw;
+      font-size: 20px;
     }
     .btn {
       display: block;
@@ -56,21 +56,22 @@
 </head>
 <body>
 
-  <h1>Seja bem-vinda ao Quiz Celestial</h1>
-  <p class="question">Esta Preparada?</p>
+  <h1>Quiz Celestial</h1>
+  <p class="question">2/4 Na hora do lanche você é:</p>
 
-  <a href="#" class="btn" onclick="showResult('Então Vamos lá!')">SIM!!</a>
-  <a href="#" class="btn" onclick="showResult('Claro que está, vamos começar!')">NÃO</a>
+  <a href="#" class="btn" onclick="showResult('a')">Pão de queijo lover</a>
+  <a href="#" class="btn" onclick="showResult('b')">A rainha do salgado recheado que escorre gordura (e orgulho)</a>
+  <a href="#" class="btn" onclick="showResult('c')">Time batata frita e risada alta</a>
+  <a href="#" class="btn" onclick="showResult('d')">Sanduíche natural, porque equilíbrio é tudo 🥪</a>
 
-  <p id="result" class="result hidden"></p>
-  
   <script>
-    function showResult(message) {
-      alert(message);
-      // window.location.href = "https://pedrodabahia.github.io/quizCelestial/pergunta1";
-      window.location.href = "./pergunta1.html";
-    }
-      </script>
+      const captura = new URLSearchParams(window.location.search);
+      const pergunta1 = captura.get('pergunta1');
+function showResult(message){
+  //window.location.href = `https://pedrodabahia.github.io/quizCelestial/pergunta3?pergunta1=${encodeURIComponent(pergunta1)}&pergunta2=${encodeURIComponent(message)}`;
+  window.location.href = `./pergunta3.html?pergunta1=${encodeURIComponent(pergunta1)}&pergunta2=${encodeURIComponent(message)}`
+}
+  </script>
 
 </body>
 </html>
