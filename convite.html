@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Celestial</title>
+  <style>
+    body {
+      background: #f0f9ff;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 50px;
+      color: #333;
+    }
+    h1 {
+      color: #4caf50;
+    }
+    .question {
+      margin: 30px 0;
+      font-size: 20px;
+    }
+    .btn {
+      display: block;
+      margin: 10px auto;
+      padding: 12px 24px;
+      background: #4caf50;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      width: 250px;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #388e3c;
+    }
+    .hidden {
+      display: none;
+    }
+    .result {
+      margin-top: 40px;
+      font-size: 22px;
+      color: #4caf50;
+    }
+    #button{
+      display: none;
+      text-decoration: none;
+      color: #4caf50;
+      padding:12px 24px;
+      width: 250px;
+      margin: 10px auto;
+      border:2px solid #4caf50;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Quiz Celestial</h1>
+  <p class="question">Qual a melhor forma de deixar seu dia mais leve?</p>
+
+  <a href="#" class="btn" onclick="showResult('Errado! Essa é boa, mas tem melhor!')">A) Encontrar alguém pra conversar sobre a vida, fé e sonhos.</a>
+  <a href="#" class="btn" onclick="showResult('Não, ficar em casa não vale dessa vez!')">B) Ficar em casa sem graça.</a>
+  <a href="#" class="btn" onclick="showResult('Parabéns! A resposta certa é essa.')">C) Tomar um Guaraná com Pedrão da Bahia</a>
+
+  <p id="result" class="result hidden"></p>
+  <a href="https://wa.me/5573999916255?text=Bora?" id="button">Topar essa bênção 🙌</a>
+  
+  <script>
+    function showResult(message) {
+    if(message == 'Parabéns! A resposta certa é essa.'){
+      document.getElementById("result").style.color="darkgreen";
+      document.getElementById("result").textContent = message + " Que tal combinarmos isso?";
+      document.getElementById("result").classList.remove("hidden");
+      document.getElementById("button").style.display = "block";
+    }else{
+      alert(message);
+      document.getElementById("result").classList.remove("hidden");  
+    }
+    }
+  </script>
+
+</body>
+</html>
