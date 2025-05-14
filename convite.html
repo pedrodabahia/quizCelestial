@@ -68,101 +68,86 @@
   <a id="button" onclick="resultado()">Topar essa bênção 🙌</a>
   
   <script>
+function resultado(){
+  const captura = new URLSearchParams(window.location.search);
+  const perguntas = ['pergunta1', 'pergunta2', 'pergunta3'];
+  let respostas = { a: 0, b: 0, c: 0, d: 0 };
 
-      function resultado(){
-      const captura = new URLSearchParams(window.location.search);
-      const pergunta1 = captura.get('pergunta1');
-      const pergunta2 = captura.get('pergunta2');
-      const pergunta3 = captura.get('pergunta3');
-      
-      let respostas = {
-        a : 0,
-        b : 0,
-        c : 0,
-        d : 0
-      }
+  perguntas.forEach(p => {
+    const r = captura.get(p);
+    if (r && respostas.hasOwnProperty(r)) {
+      respostas[r]++;
+    }
+  });
 
-      let coletado = [pergunta1, pergunta2, pergunta3];
+  // Pega a(s) letra(s) mais votada(s)
+  let max = Math.max(...Object.values(respostas));
+  let maisVotadas = Object.keys(respostas).filter(r => respostas[r] === max);
+  let escolhaFinal = maisVotadas[Math.floor(Math.random() * maisVotadas.length)];
 
-      const formData = new FormData(coletado.target);
-      formData.forEach((value) => {
-        respostas[value]++;
-      });
+  let resultText = "";
+  switch (escolhaFinal) {
+    case "a":
+      resultText = "Você é o tipo café! Sempre tranquilo e estiloso!\nQue tal um café em um lugar aconchegante pra conversar?";
+      break;
+    case "b":
+      resultText = "Você é a rainha do salgado! Gosta de uma comida boa e uma boa risada!\nVamos curtir um rolê com pastel e caldo de cana?";
+      break;
+    case "c":
+      resultText = "Você é time batata frita! Simples, direto e divertido!\nTopa um passeio no parque com batata frita e papo bom?";
+      break;
+    case "d":
+      resultText = "Você é do tipo que adora uma boa vibe! 🍿\nQue tal um cinema com pipoca e depois a gente troca ideia sobre o filme?";
+      break;
+  }
 
-      let maxAnswer = Object.keys(respostas).reduce((a, b) => respostas[a] > respostas[b] ? a : b);
-
-            let resultText = "";
-      switch (maxAnswer) {
-        case "a":
-          resultText = "Você é o tipo café! Sempre tranquilo e estiloso!";
-          break;
-        case "b":
-          resultText = "Você é a rainha do salgado! Adora uma comida boa e uma boa risada!";
-          break;
-        case "c":
-          resultText = "Você é o mestre da batata frita! Simples e direto ao ponto!";
-          break;
-        case "d":
-          resultText = "Você é a pessoa sofisticada! Gosta de se sentir chique e adora uma boa foto!";
-          break;
-      }
-
-
-      window.location.href= `https://wa.me/5573999916255?text=${resultText}?`;
-      }
-
+  window.location.href = `https://wa.me/5573999916255?text=${encodeURIComponent(resultText)}`;
+}
 
 function showResult(message) {
-    if(message == 'Parabéns! A resposta certa é essa.'){
+  if (message == 'Parabéns! A resposta certa é essa.') {
+    const captura = new URLSearchParams(window.location.search);
+    const perguntas = ['pergunta1', 'pergunta2', 'pergunta3'];
+    let respostas = { a: 0, b: 0, c: 0, d: 0 };
 
-
-        const captura = new URLSearchParams(window.location.search);
-      const pergunta1 = captura.get('pergunta1');
-      const pergunta2 = captura.get('pergunta2');
-      const pergunta3 = captura.get('pergunta3');
-      
-      let respostas = {
-        a : 0,
-        b : 0,
-        c : 0,
-        d : 0
+    perguntas.forEach(p => {
+      const r = captura.get(p);
+      if (r && respostas.hasOwnProperty(r)) {
+        respostas[r]++;
       }
+    });
 
-      let coletado = [pergunta1, pergunta2, pergunta3];
+    let max = Math.max(...Object.values(respostas));
+    let maisVotadas = Object.keys(respostas).filter(r => respostas[r] === max);
+    let escolhaFinal = maisVotadas[Math.floor(Math.random() * maisVotadas.length)];
 
-      const formData = new FormData(coletado.target);
-      formData.forEach((value) => {
-        respostas[value]++;
-      });
-
-      let maxAnswer = Object.keys(respostas).reduce((a, b) => respostas[a] > respostas[b] ? a : b);
-
-            let resultText = "";
-      switch (maxAnswer) {
-        case "a":
-          resultText = "Você é o tipo café! Sempre tranquila e estilosa, \nQue tal um café em um lugar aconchegante para conversarmos mais e relaxar?";
-          break;
-        case "b":
-          resultText = "Você é a rainha do salgado! Adora uma comida boa e uma boa risada! \nVamos curtir um rolê com pastel e caldo de cana? Prometo que a risada é garantida!";
-          break;
-        case "c":
-          resultText = "Você é o mestre da batata frita! Simples e direto ao ponto! \nQue tal um passeio no parque, com batata frita e muita conversa boa?";
-          break;
-        case "d":
-          resultText = "Você é do tipo que adora uma boa vibe! 🍿\nQue tal um cinema com pipoca, e depois a gente vai bater um papo sobre o filme?";
-          break;
-      }
-      document.getElementById("result").style.color="darkgreen";
-      document.getElementById("result").textContent = message + "\n"+"Parece que "+resultText;
-      document.getElementById("result").classList.remove("hidden");
-      document.getElementById("button").style.display = "block";
-    
-    }else{
-      alert(message);
-      document.getElementById("result").classList.remove("hidden");  
+    let resultText = "";
+    switch (escolhaFinal) {
+      case "a":
+        resultText = "Você é o tipo café! Sempre tranquila e estilosa!\nQue tal um café em um lugar aconchegante pra conversar?";
+        break;
+      case "b":
+        resultText = "Você é a rainha do salgado! Gosta de uma comida boa e uma boa risada!\nVamos curtir um rolê com pastel e caldo de cana?";
+        break;
+      case "c":
+        resultText = "Você é time batata frita! Simples, direto e divertido!\nTopa um passeio no parque com batata frita e papo bom?";
+        break;
+      case "d":
+        resultText = "Você é do tipo que adora uma boa vibe! 🍿\nQue tal um cinema com pipoca e depois a gente troca ideia sobre o filme?";
+        break;
     }
-    }
-  </script>
+
+    document.getElementById("result").style.color = "darkgreen";
+    document.getElementById("result").textContent = message + "\n" + "Parece que " + resultText;
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("button").style.display = "block";
+
+  } else {
+    alert(message);
+    document.getElementById("result").classList.remove("hidden");
+  }
+}
+</script>
 
 </body>
 </html>
